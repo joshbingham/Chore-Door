@@ -1,0 +1,1 @@
+A little game to practice my JavaScript logic. I have implemented local storage for the first time in this project to display a dynamic scoreboard that updates wins, losses, current streak and best streak that saves even upon refreshing the page. I plan to add more interesting features so stay tuned!
