@@ -62,3 +62,11 @@ body {
   margin-bottom: 9px;
   cursor: pointer;
 }
+
+#scoreboard {
+  text-align: center;
+  font-family: 'Work Sans';
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}

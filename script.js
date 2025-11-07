@@ -25,11 +25,15 @@ const isBot = door => {
 const gameOver = status => {
     if (status === 'win') {
         startButton.innerHTML = 'You win! Play again?';
+        increaseWins();
     } else {
         startButton.innerHTML = 'Game over! Play again?';
+        increaseLosses();
     } 
     // Set currentlyPlaying to false to prevent further clicks
     currentlyPlaying = false;
+    // Update scoreboard
+    upateScoreboard();
 };
 
 
@@ -100,3 +104,25 @@ const startRound = () => {
 
 // Initialize the first round
 startRound();
+
+//Local storage  to save wins 
+const increaseWins = () => {
+    let wins = parseInt(localStorage.getItem('wins')) || 0; 
+    wins ++;
+    localStorage.setItem('wins', wins);
+};
+
+const increaseLosses = () => {
+    let losses = parseInt(localStorage.getItem('losses')) || 0; 
+    losses ++;
+    localStorage.setItem('losses', losses);
+};
+
+const upateScoreboard = () => {
+  document.getElementById('wins').innerText = localStorage.getItem('wins') || 0;
+  document.getElementById('losses').innerText = localStorage.getItem('losses') || 0;
+};
+
+// Update scoreboard on page load
+upateScoreboard();
+
