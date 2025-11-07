@@ -33,7 +33,7 @@ const gameOver = status => {
     // Set currentlyPlaying to false to prevent further clicks
     currentlyPlaying = false;
     // Update scoreboard
-    upateScoreboard();
+    updateScoreboard();
 };
 
 
@@ -118,11 +118,11 @@ const increaseLosses = () => {
     localStorage.setItem('losses', losses);
 };
 
-const upateScoreboard = () => {
+const updateScoreboard = () => {
   document.getElementById('wins').innerText = localStorage.getItem('wins') || 0;
   document.getElementById('losses').innerText = localStorage.getItem('losses') || 0;
 };
 
 // Update scoreboard on page load
-upateScoreboard();
+updateScoreboard();
 
