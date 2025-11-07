@@ -26,13 +26,16 @@ const gameOver = status => {
     if (status === 'win') {
         startButton.innerHTML = 'You win! Play again?';
         increaseWins();
+        updateStreak(true);
     } else {
         startButton.innerHTML = 'Game over! Play again?';
         increaseLosses();
+        updateStreak(false);
     } 
     // Set currentlyPlaying to false to prevent further clicks
     currentlyPlaying = false;
     // Update scoreboard
+    updateBestStreak();
     updateScoreboard();
 };
 
@@ -118,9 +121,25 @@ const increaseLosses = () => {
     localStorage.setItem('losses', losses);
 };
 
+const updateStreak = won => {
+  let streak = parseInt(localStorage.getItem('streak')) || 0;
+  streak = won ? streak + 1 : 0;
+  localStorage.setItem('streak', streak);
+};
+
+const updateBestStreak = () => {
+  let bestStreak = parseInt(localStorage.getItem('bestStreak')) || 0;
+  let currentStreak = parseInt(localStorage.getItem('streak')) || 0;
+  if (currentStreak > bestStreak) {
+    localStorage.setItem('bestStreak', currentStreak);
+  }
+};
+
 const updateScoreboard = () => {
   document.getElementById('wins').innerText = localStorage.getItem('wins') || 0;
   document.getElementById('losses').innerText = localStorage.getItem('losses') || 0;
+  document.getElementById('streak').innerText = localStorage.getItem('streak') || 0;
+  document.getElementById('best-streak').innerText = localStorage.getItem('bestStreak') || 0;
 };
 
 // Update scoreboard on page load
